@@ -19,11 +19,11 @@ class User < ApplicationRecord
   end
 
   def upvote(link)
-    votes.create(upvote: 1, link: link)
+    votes.create(upvote: 1, link: link, upvote: true)
   end
 
   def upvoted?(link)
-    votes.exists?(upvote: 1, link: link)
+    votes.exists?(upvote: 1, link: link, upvote: true)
   end
 
   def remove_vote(link)
@@ -31,11 +31,11 @@ class User < ApplicationRecord
   end
   
   def downvote(link)
-    votes.create(downvote: 1, link: link)
+    votes.create(downvote: 1, link: link, downvote: true)
   end
 
   def downvoted?(link)
-    votes.exists?(downvote: 1, link: link)
+    votes.exists?(downvote: 1, link: link, downvote: true)
   end
 
 end

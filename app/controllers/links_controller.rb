@@ -60,9 +60,18 @@ class LinksController < ApplicationController
   end
 
   def upvote
-    @link = Link.find(params[:id])
-    @link.increment!(:votes) # Assuming there's a `votes` column to track upvotes
-    redirect_to @link, notice: "Link upvoted successfully."
+    link = Link.find_by(id: params[:id])
+
+    if current_user.upvoted?(link)
+      current_user.remove_vote(link)
+    elsif current_user.downvoted?(link)
+      current_user.remove_vote(link)
+      current_user.upvote(link)
+    else
+      current_user.upvote(link)
+    end
+
+    redirect_to root_path
   end
 
 

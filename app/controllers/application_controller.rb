@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
   protect_from_forgery with: :exception
+  helper_method :current_user, :logged_in?
 
   def login(user)
     session[:user_id] = user.id 
@@ -17,10 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    current_user.nil? ? false : true
+    session[:user_id].present?
   end
 
-  helper_method :current_user, :logged_in?
+  
 
   def prevent_unauthorized_user_access
     unless logged_in?

@@ -8,11 +8,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      login(@user)
       redirect_to root_path, notice: 'Logged in'
     else
       render :new 
     end 
   end
+
+  def destroy
+    logout
+    redirect_to root_path, notice: 'Logged out'
+  end
+  
   private
 
   def user_params

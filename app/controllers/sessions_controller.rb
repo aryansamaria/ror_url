@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   before_action :prevent_logged_in_user_access, except: :destroy
   before_action :prevent_unauthorized_user_access, only: :destroy
   def new
+    
   end
 
   def create
@@ -17,8 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout
-      redirect_back fallback_location: new_session_path, notice: 'Logged out'
+    session[:user_id] = nil
+    redirect_to new_session_path, notice: 'Logged out'
   end
 
   private

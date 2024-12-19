@@ -4,9 +4,9 @@
       <div class="card-body">
         <!-- Title -->
         <h5 class="card-title">
-          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary", target: "_blank" %>
-          <% if link.url? %>
-            <small class="text-muted">( <%= link.url %> )</small>
+          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary", target: "_blank" %><br>
+          LINK <% if link.url? %>
+            <small class="text-muted">~ <%= link.url %> ~</small>
           <% end %>
         </h5>
 
@@ -15,10 +15,8 @@
           <span class="text-muted">
             <%= time_ago_in_words(link.created_at) %> ago
           </span>
-          <span class="badge bg-info">
-            <%= pluralize(link.points, 'point') %> by <%= link.user.username %>
-          </span>
-          <span class="badge bg-secondary">
+         
+          <span class="badge">
             <%= link_to pluralize(link.comment_count, 'comment'), link %>
           </span>
         </div>

@@ -3,14 +3,19 @@ Rails.application.routes.draw do
 
   resources :links, except: :index do
     resources :comments, only: [:create, :edit, :update, :destroy]
-    post :upvote, on: :member
-    post :downvote, on: :member
+    # post :upvote, on: :member
+    # post :downvote, on: :member
   end
+  get '/links/:id/upvote', to: 'links#upvote', as: 'upvote_link'
+  get '/links/:id/downvote', to: 'links#downvote', as: 'downvote_link'
+  
 
   get '/comments' => 'comments#index'
   
   resources :users, only: [:new, :create]
-   resource :session, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create]
+  # delete 'logout', to: 'sessions#destroy', as: 'logout'
+  get "/logout", to: "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
