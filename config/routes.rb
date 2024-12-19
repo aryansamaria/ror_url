@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   resources :links, except: :index do
     resources :comments, only: [:create, :edit, :update, :destroy]
-    # post :upvote, on: :member
-    # post :downvote, on: :member
   end
+
+  get '/comments' => 'comments#index'
+
   get '/links/:id/upvote', to: 'links#upvote', as: 'upvote_link'
   get '/links/:id/downvote', to: 'links#downvote', as: 'downvote_link'
   
