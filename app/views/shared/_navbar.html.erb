@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to "jump news", root_path, class: "navbar-brand" %>
+    <div class="d-flex">
+      <%= link_to "new", "#", class: "btn btn-secondary" %>
+      <%= link_to "comments", comments_path, class: "btn btn-secondary" %>
+      
+      <% unless logged_in? %>
+        <%= link_to "signup", new_user_path, class: "btn btn-secondary" %>
+        <%= link_to "login", new_session_path, class: "btn btn-secondary" %>
+      <% end %>
+      
+      <% if logged_in? %>
+        <%= link_to "submit a link", new_link_path, class: "btn btn-secondary" %>
+        <%= link_to "logout", root_path, method: :delete, class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

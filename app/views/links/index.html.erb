@@ -1,0 +1,44 @@
+<section class="container my-5">
+  <% @links.each do |link| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <!-- Title -->
+        <h5 class="card-title">
+          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary", target: "_blank" %>
+          <% if link.url? %>
+            <small class="text-muted">( <%= link.url %> )</small>
+          <% end %>
+        </h5>
+
+        <!-- Metadata -->
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <span class="text-muted">
+            <%= time_ago_in_words(link.created_at) %> ago
+          </span>
+          <span class="badge bg-info">
+            <%= pluralize(link.points, 'point') %> by <%= link.user.username %>
+          </span>
+          <span class="badge bg-secondary">
+            <%= link_to pluralize(link.comment_count, 'comment'), link %>
+          </span>
+        </div>
+
+        <!-- Edit/Delete Links -->
+        <% if logged_in? && current_user.owns_link?(link) %>
+          <div class="d-flex justify-content-start mt-3">
+            <%= link_to "Edit", edit_link_path(link), class: "btn btn-outline-primary btn-sm me-2" %>
+            <%= link_to "Delete", link, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+          </div>
+        <% end %>
+
+        <!-- Upvote/Downvote -->
+        <% if logged_in? %>
+          <div class="d-flex justify-content-start mt-2">
+            <%= link_to "Upvote (#{link.upvotes})", upvote_link_path(link), method: :post, class: "btn btn-outline-success btn-sm me-2" %>
+            <%= link_to "Downvote (#{link.downvotes})", downvote_link_path(link), method: :post, class: "btn btn-outline-danger btn-sm" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</section>

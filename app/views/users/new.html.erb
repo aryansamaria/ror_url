@@ -1,0 +1,26 @@
+<section class="register-user">
+  <header>
+    <h1>Create a New Account</h1>
+  </header>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_for @user do |f| %>
+        <%= render "shared/errors", object: @user %>
+
+        <div class="mb-3">
+          <%= f.text_field :username, class: "form-control", required: true, minlength: 3, placeholder: "Username" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.password_field :password, class: "form-control", required: true, minlength: 8, placeholder: "Password" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "Register", class: "btn btn-success" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</section>
