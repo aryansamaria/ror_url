@@ -9,25 +9,12 @@
 #   end
 
 
-# seeds.rb
+User.create(username: 'Badal', password: 'password123')
+User.create(username: 'Aakash', password: 'password321')
 
-# Create Users
-user1 = User.create(username: 'Alice', password: 'password')
-user2 = User.create(username: 'Bob', password: 'password')
 
-# Ensure Users are saved before proceeding with child records
-if user1.persisted? && user2.persisted?
-  # Create Links (Assuming you have a Link model)
-  link1 = Link.create(url: 'https://example.com', title: 'Example Link')
+link1 = Link.create(title: 'first link', url: 'https://www.linkedin.com/')
 
-  # Ensure Link is saved before creating Comments
-  if link1.persisted?
-    # Create Comments
-    link1.comments.create(user: user1, body: 'Great link!')
-    link1.comments.create(user: user2, body: 'Very interesting!')
-  else
-    puts "Link not created"
-  end
-else
-  puts "Users not created"
-end
+
+link1.comments.create(user_id: User.first.id, body: 'Great link!')
+link1.comments.create(user_id: User.last.id, body: 'Interesting!')
