@@ -9,12 +9,16 @@
 #   end
 
 
-User.create(username: 'Badal', password: 'password123')
-User.create(username: 'Aakash', password: 'password321')
+User.create(username: "Badal", password:"pass12345")
 
+user = User.first
 
-link1 = Link.create(title: 'first link', url: 'https://www.linkedin.com/')
+Link.create(title: "xyzlink", url: "https://best.aliexpress.com/?af=amp1250&dp=128319984627625984&mfadid=adm&aff_fcid=f4611e207da3482fa9ff13553c457dfa-1734663626587-05689-byrlillA&aff_fsk=byrlillA&aff_platform=link-c-tool&sk=byrlillA&aff_trace_key=f4611e207da3482fa9ff13553c457dfa-1734663626587-05689-byrlillA&terminal_id=17b0dcf33f4646c1b33d94fe4a5a194e&afSmartRedirect=y")
 
+User.create([{username: "Piyush", password: "piyush1212"},
+{username: "joshi", password: "joshi09876"}])
 
-link1.comments.create(user_id: User.first.id, body: 'Great link!')
-link1.comments.create(user_id: User.last.id, body: 'Interesting!')
+Link.create([{title: "popup", url: "https://semantic-ui.com/modules/popup.html"},
+{title: "msg", url: "https://chatgpt.com"}])
+
+puts "seeding complete!"

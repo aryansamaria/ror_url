@@ -1,23 +1,13 @@
 <section class="edit-comment">
   <header>
-    <h1>
+    <h1 class="text-center " style="margin-top: 200px;">
       Edit comment
     </h1>
   </header>
 
   <div class="row">
-    <div class="col-sm-6">
-      <%= form_for :comment, url: edit_link_path(@link, @comment), method: :patch do |f| %>
-        <%# <%= render "shared/errors", object: @comment %>
-        <div class="form-group">
-          <%= f.text_area :body, class: "form-control", rows: 10, required: true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.button "edit comment", class: "btn btn-success" %>
-        </div>
-
-      <% end %>
+    <div class="col-sm-6 m-auto mt-3">
+      <%= render "form" %>
     </div>
   </div>
 </section>
