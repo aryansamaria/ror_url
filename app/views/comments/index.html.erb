@@ -1,7 +1,6 @@
-<section class="sitewide-comments">
+<section class="sitewide-comments" style="margin-top: 100px;">
   <% @comments.each do |comment| %>
-  <div class="comment card">
-    <div class="card-body">
+    <div class="comment">
       <p class="comment-owner">
         <strong>
           <%= comment.user.username %>
@@ -12,13 +11,13 @@
         </span>
 
         <% if logged_in? && current_user.owns_comment?(comment) %>
-        <span class="edit-comment">
-          <%= link_to 'edit', edit_link_comment_path(comment.link, comment) %>
-        </span>
+          <span class="edit-comment">
+            <%= link_to 'edit', edit_link_comment_path(comment.link, comment) %>
+          </span>
 
-        <span class="delete-comment">
-          <%= link_to 'delete', link_comment_path(comment.link, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </span>
+          <span class="delete-comment">
+            <%= link_to 'delete', link_comment_path(comment.link, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </span>
         <% end %>
       </p>
 
@@ -26,6 +25,5 @@
         <%= comment.body %>
       </p>
     </div>
-  </div>
   <% end %>
 </section>

@@ -1,42 +1,28 @@
-<section class="container my-5">
-  <% @links.each do |link| %>
-    <div class="card mb-4">
-      <div class="card-body">
-   
-        <h5 class="card-title">
-          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary", target: "_blank" %><br>
-          LINK <% if link.url? %>
-            <small class="text-muted">~ <%= link.url %> ~</small>
-          <% end %>
-        </h5>
-
+<section class="container" style="margin-top: 100px;">
+  <% @links.each_with_index do |link, index| %>
+    <div class="d-flex align-items-start mb-3" id="navlinks">
+      <!-- Numbering -->
+      <div class="me-3 text-center">
+        <span class="fw-bold"><%= index + 1 %>.</span>
+      </div>
+    
       
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <span class="text-muted">
-            <%= time_ago_in_words(link.created_at) %> ago
-          </span>
-         
-          <span class="badge">
-            <%= link_to pluralize(link.comment_count, 'comment'), link %>
-          </span>
-          <% if logged_in? && current_user.owns_link?(link) %>
-            <div class="d-flex  mt-3">
-              <%= link_to "Edit", edit_link_path(link), class: "btn btn-outline-primary btn-sm me-2" %>
-              <%= link_to "Delete", link, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
-            </div>
-          <% end %>
-        </div>
+      <div class="me-3 text-center">
+        <%= link_to raw('&#9650;'), upvote_link_path(link), method: :post, class: "text-success d-block" %>
+        <span class="text-muted d-block"><%= link.upvotes %></span>
+      </div>
 
-       
-       
-
-
-        <% if logged_in? %>
-          <div class="d-flex justify-content-start mt-2">
-            <%= link_to "Upvote (#{link.upvotes})", upvote_link_path(link), method: :post, class: "btn btn-outline-success btn-sm me-2" %>
-            <%= link_to "Downvote (#{link.downvotes})", downvote_link_path(link), method: :post, class: "btn btn-outline-danger btn-sm" %>
-          </div>
-        <% end %>
+     
+      <div class="flex-grow-1">
+        <h6 class="mb-0">
+          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>::
+          <%= link_to link.description, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>
+        </h6>
+        
+        <small class="text-muted d-block">
+          <%= time_ago_in_words(link.created_at) %> ago | 
+          <%= link_to pluralize(link.comment_count, 'comment'), link, class: "text-muted",id: "link-comment" %>
+        </small>
       </div>
     </div>
   <% end %>

@@ -1,0 +1,30 @@
+<center style="margin-top: 100px;">Kindly, while submiting to showcase in the title section write "Showcase:" and then your title</center>
+<section class="container" style="margin-top: 40px;">
+ 
+  <% if @showcase_links.any? %>
+    <% @showcase_links.each_with_index do |link, index| %>
+      <div class="d-flex align-items-start mb-3">
+        <!-- Numbering -->
+        <div class="me-3 text-center">
+          <span class="fw-bold"><%= index + 1 %>.</span>
+        </div>
+
+        <!-- Link Content -->
+        <div class="flex-grow-1">
+          <h6 class="mb-0">
+            <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>
+          </h6>
+          <% if link.url? %>
+            <small class="text-muted d-block">~ <%= link.url %> ~</small>
+          <% end %>
+          <small class="text-muted d-block">
+            <%= time_ago_in_words(link.created_at) %> ago | 
+            <%= link_to pluralize(link.comment_count, 'comment'), link, class: "text-muted" %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No links in the showcase yet. Be the first to showcase your creation!</p>
+  <% end %>
+</section>

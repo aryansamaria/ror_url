@@ -3,13 +3,15 @@
     <%= link_to "Jump News", root_path, class: "navbar-brand" %>
 
     <div class="navbar-links d-flex">
-      <%= link_to "Comments", comments_path, class: "btn btn-link" %>
+      <%= link_to "Showcase", showcase_links_path,class: "btn btn-link", id:"show" %>
+
+      <%= link_to "Comments", comments_path, class: "btn btn-link",id: "comment" %>
       
       <% if logged_in? %>
-        <%= link_to "Submit a Link", new_link_path, class: "btn btn-link " %>
+        <%= link_to "Submit a Link", new_link_path, class: "btn btn-link ",id: "sub" %>
         <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-link" %>
       <% else %>
-        <%= link_to "Sign Up", new_user_path, class: "btn btn-link" %>
+        <%= link_to "Sign Up", new_user_path, class: "btn btn-link",id: "signup" %>
         <%= link_to "Login", new_session_path, class: "btn btn-link " %>  
       <% end %>
     </div>

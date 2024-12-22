@@ -1,10 +1,12 @@
-<section class="link-thread">
-  <header>
-    <h2><%= @link.title %></h2>
+<section class="link-thread" style="margin-top: 100px;">
+  <center>
+    <header> 
+    <h2> title: <%= @link.title %></h2>
     <% if @link.description? %>
-      <p><%= @link.description %></p>
+      <p>description: <%= @link.description %></p>
     <% end %>
   </header>
+  </center>
 
   <div class="comments-container">
    

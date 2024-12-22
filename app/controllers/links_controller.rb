@@ -22,6 +22,7 @@ class LinksController < ApplicationController
   def show
     @link = Link.find_by(id: params[:id])
     @comments = @link.comments
+    @links = Link.all   
     unless @link
       redirect_to root_path, notice: "Link not found."
     end
@@ -91,7 +92,9 @@ class LinksController < ApplicationController
     redirect_to root_path
   end
 
-
+  def showcase
+    @showcase_links = Link.where("LOWER(title) LIKE ?", "showcase:%")
+  end
 
   private
 

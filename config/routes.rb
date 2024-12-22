@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   root 'links#index'
 
   resources :links, except: :index do
-    resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :comments, only: [:create, :edit, :update]
+    collection do 
+      get :showcase
+    end
   end
-
+  delete '/links/:link_id/comments/:id', to: "comments#destroy"
   get '/comments' => 'comments#index'
 
   get '/links/:id/upvote', to: 'links#upvote', as: 'upvote_link'
