@@ -126,8 +126,9 @@ class LinksController < ApplicationController
     begin
       
       doc = Nokogiri::HTML(URI.open(url))
-      description =doc.at('span').text.strip if doc.at('span')
-
+      description =doc.at('head').text.strip if doc.at('head')
+      description += '\n'+doc.at('span').text.strip if doc.at('span')
+      
       
 
       # description ||= "No meta description found."

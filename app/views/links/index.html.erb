@@ -21,7 +21,9 @@
         <small class="text-muted d-block">
           <%= time_ago_in_words(link.created_at) %> ago |
           <%= link_to pluralize(link.comment_count, 'comment'), link, class: "text-muted", id: "link-comment" %> |
-           <%= link_to "summary", show_summary_link_path(link),class: "", id:"show" %>
+          <%= link_to 'delete', link_path(link), method: :delete, data: { confirm: 'Are you sure?' } %>
+ |
+           <%= link_to "summary", show_summary_link_path(link),class: "", id:"show" %> 
         </small>
       </div>
 
