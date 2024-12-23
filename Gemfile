@@ -22,8 +22,9 @@ gem "bcrypt", "~> 3.1.7"
 
 #scraping
 gem 'metainspector', '~> 5.15'
-gem 'nokogiri', '~> 1.17', '>= 1.17.2'
-gem 'httparty', '~> 0.22.0'
+gem 'nokogiri'
+gem 'httparty'
+gem 'pry-rails'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

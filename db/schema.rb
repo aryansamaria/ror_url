@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_22_203327) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_123808) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_203327) do
     t.integer "points", default: 1
     t.float "hot_score", default: 0.0
     t.text "content_summary"
+    t.text "summary"
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 

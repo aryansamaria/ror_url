@@ -1,0 +1,19 @@
+
+<section class="container" style="margin-top: 100px;">
+  <h1 class="mb-4">Summary</h1>
+  
+  <p><strong>Link:</strong> <%= link_to @link.url, @link.url, target: "_blank" %></p>
+
+  <% if @link.summary.present? %>
+    <div class="">
+      <strong>Summary:</strong> <%= @link.summary %>
+    </div>
+  <% else %>
+    <div class="">
+      <strong>No summary available.</strong>
+      <%= form_with url: generate_summary_link_path(@link), method: :post, remote: true do %>
+        <%= submit_tag "Generate Summary", class: "btn btn-secondary btn-sm" %>
+      <% end %>
+    </div>
+  <% end %>
+</section>

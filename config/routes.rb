@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   root 'links#index'
 
   resources :links, except: :index do
@@ -6,14 +7,22 @@ Rails.application.routes.draw do
     collection do 
       get :showcase
     end
+    post 'generate_summary', on: :member
+    get 'show_summary', on: :member
+
   end
   delete '/links/:link_id/comments/:id', to: "comments#destroy"
   get '/comments' => 'comments#index'
 
+  # get 'scrape', to: 'pages#scrape_data', as: :scrape_data
+  
   get '/links/:id/upvote', to: 'links#upvote', as: 'upvote_link'
   get '/links/:id/downvote', to: 'links#downvote', as: 'downvote_link'
   
+  
+  
 
+ 
   get '/comments' => 'comments#index'
   
   resources :users, only: [:new, :create]

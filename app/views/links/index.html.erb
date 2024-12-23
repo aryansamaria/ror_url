@@ -5,25 +5,27 @@
       <div class="me-3 text-center">
         <span class="fw-bold"><%= index + 1 %>.</span>
       </div>
-    
-      
+
+      <!-- Votes -->
       <div class="me-3 text-center">
         <%= link_to raw('&#9650;'), upvote_link_path(link), method: :post, class: "text-success d-block" %>
         <span class="text-muted d-block"><%= link.upvotes %></span>
       </div>
 
-     
+      <!-- Link Info -->
       <div class="flex-grow-1">
         <h6 class="mb-0">
-          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>::
-          <%= link_to link.description, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>
+          <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>
         </h6>
-        
+
         <small class="text-muted d-block">
-          <%= time_ago_in_words(link.created_at) %> ago | 
-          <%= link_to pluralize(link.comment_count, 'comment'), link, class: "text-muted",id: "link-comment" %>
+          <%= time_ago_in_words(link.created_at) %> ago |
+          <%= link_to pluralize(link.comment_count, 'comment'), link, class: "text-muted", id: "link-comment" %> |
+           <%= link_to "summary", show_summary_link_path(link),class: "", id:"show" %>
         </small>
       </div>
+
+      
     </div>
   <% end %>
 </section>

@@ -96,9 +96,48 @@ class LinksController < ApplicationController
     @showcase_links = Link.where("LOWER(title) LIKE ?", "showcase:%")
   end
 
+  def generate_summary
+    @link = Link.find(params[:id])
+  
+    # Generate the summary
+    @link.update(summary: scrape_summary(@link.url))
+    
+    respond_to do |format|
+      format.js  
+      format.html { redirect_to show_summary_link_path(@link), notice: 'Summary generated!' }
+    end
+  end
+  
+  def show_summary
+    @link = Link.find(params[:id]) 
+  end
+  
+
   private
 
   def link_params
     params.require(:link).permit(:title, :url, :description)
+  end
+
+  def scrape_summary(url)
+    require 'nokogiri'
+    require 'open-uri'
+
+    begin
+      
+      doc = Nokogiri::HTML(URI.open(url))
+      description =doc.at('span').text.strip if doc.at('span')
+
+      
+
+      # description ||= "No meta description found."
+
+    rescue OpenURI::HTTPError => e
+      description = "Failed to fetch summary. Error: #{e.message}"
+    rescue StandardError => e
+      description = "An error occurred: #{e.message}"
+    end
+
+    description
   end
 end

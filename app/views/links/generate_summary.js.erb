@@ -1,0 +1,3 @@
+// generate_summary.js.erb
+document.getElementById('summary-container-<%= @link.id %>').innerText = "<%= @link.summary %>";
+document.getElementById('generate-btn-<%= @link.id %>').style.display = 'none';

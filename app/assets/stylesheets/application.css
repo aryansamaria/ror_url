@@ -327,5 +327,12 @@ textarea.form-control {
   border-radius: 5px;
 }
 
+.hidden {
+  display: none;
+}
+
+.hide-btn {
+  margin-top: 5px;
+}
 
 
