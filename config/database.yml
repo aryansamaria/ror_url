@@ -2,16 +2,20 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  url: <%= ENV['postgresql://jumpnews_user:Ub86lvyEkNjDJnfNnv1TjEvtjRCwqfom@dpg-ctkubh9opnds7382jk2g-a/jumpnews'] %>
+  username: <%= ENV['jumpnews_user'] %>
+  password: <%= ENV['Ub86lvyEkNjDJnfNnv1TjEvtjRCwqfom'] %>
+  host: <%= ENV['dpg-ctkubh9opnds7382jk2g-a'] %>
 
 development:
   <<: *default
-  database: my_app_development
+  database: <%= ENV['jumpnews'] || 'your_app_development' %>
 
 test:
   <<: *default
-  database: my_app_test
+  database: <%= ENV['jumpnews'] || 'your_app_test' %>
 
 production:
   <<: *default
+  database: <%= ENV['postgresql://jumpnews_user:Ub86lvyEkNjDJnfNnv1TjEvtjRCwqfom@dpg-ctkubh9opnds7382jk2g-a/jumpnews'] %>
+
+ 
