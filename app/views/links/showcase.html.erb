@@ -4,12 +4,9 @@
   <% if @showcase_links.any? %>
     <% @showcase_links.each_with_index do |link, index| %>
       <div class="d-flex align-items-start mb-3">
-        <!-- Numbering -->
         <div class="me-3 text-center">
           <span class="fw-bold"><%= index + 1 %>.</span>
         </div>
-
-        <!-- Link Content -->
         <div class="flex-grow-1">
           <h6 class="mb-0">
             <%= link_to link.title, (link.url? ? link.url : link), class: "text-primary fw-bold", target: "_blank" %>
