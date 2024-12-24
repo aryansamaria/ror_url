@@ -413,7 +413,7 @@ DEPENDENCIES
   kamal
   metainspector (~> 5.15)
   nokogiri
-  pg
+  pg (~> 1.1)
   propshaft
   pry-rails
   puma (>= 5.0)
