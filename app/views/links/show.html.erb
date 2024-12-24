@@ -27,7 +27,7 @@
                 <%= link_to 'edit', edit_link_comment_path(@link, comment) %>
               </span>
               <span class="delete-comment">
-               
+                <%= link_to 'delete', root_path, method: :delete, data: { confirm: 'Are you sure?' } %>
               </span>
             <% end %>
           </p>

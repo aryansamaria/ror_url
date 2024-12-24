@@ -53,7 +53,7 @@ class LinksController < ApplicationController
     link = Link.find_by(id: params[:id])
 
     if current_user.owns_link?(link)
-      link.destroy
+      @link.destroy
       redirect_to root_path, notice: 'Link successfully deleted'
     else
       redirect_to root_path, notice: 'Not authorized to delete this link'
