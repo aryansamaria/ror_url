@@ -1,45 +1,15 @@
 <section class="link-thread" style="margin-top: 100px;">
   <center>
     <header> 
-    <h2> title: <%= @link.title %></h2>
+      <%= link_to raw('&#9650;'), upvote_link_path(@link), method: :post, class: "text-success " %>
+      <span class="text-muted"><%= @link.upvotes %></span> |
+     <%= link_to @link.title, (@link.url? ? @link.url : @link) %>:: 
     <% if @link.description? %>
-      <p>description: <%= @link.description %></p>
+      <%= @link.description %>
     <% end %>
-  </header>
-  </center>
-
-  <div class="comments-container">
-   
-    <div class="all-comments">
-      <% if @comments.present? %>
-        <h3 class="text-center">Comments</h3>
-      <% end %>
-
-      <% @comments.each do |comment| %>
-        <div class="comment">
-          <p class="comment-owner">
-            <strong><%= comment.user.username %></strong>
-            <span class="comment-created small">
-              <%= time_ago_in_words(comment.created_at) %> ago
-            </span>
-            <% if logged_in? && current_user.owns_comment?(comment) %>
-              <span class="edit-comment">
-                <%= link_to 'edit', edit_link_comment_path(@link, comment) %>
-              </span>
-              <span class="delete-comment">
-                <%= link_to 'delete', root_path, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </span>
-            <% end %>
-          </p>
-          <p><%= comment.body %></p>
-        </div>
-      <% end %>
-    </div>
-
-
     <% if logged_in? %>
-      <div class="add-comment">
-      	<h3 class="text-center">Add Comments</h3>
+      <div class="mt-4">
+        
         <%= form_for :comment, url: link_comments_path(@link) do |f| %>
           <div class="form-group">
             <%= f.text_area :body, class: "form-control", placeholder: "Your comment...", rows: 6, required: true %>
@@ -50,5 +20,39 @@
         <% end %>
       </div>
     <% end %>
+  </header>
+  </center>
+
+
+  <div class="mt-5">
+   
+    <div style="margin-left: 300px;">
+      <% if @comments.present? %>
+        
+      <% end %>
+
+      <% @comments.each do |comment| %>
+        <div class="">
+          <p class="m-auto">
+           => <strong><%= comment.user.username %></strong>--<%= comment.body %>
+            <br>
+              <small><%= time_ago_in_words(comment.created_at) %> ago</small>
+            
+            <% if logged_in? && current_user.owns_comment?(comment) %>
+              <span class="edit-comment">
+                <%= link_to 'edit', edit_link_comment_path(@link, comment) %>
+              </span>
+              <span class="delete-comment">
+                <%= link_to 'delete', root_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </span>
+            <% end %>
+          </p>
+          <p></p>
+        </div>
+      <% end %>
+    </div>
+
+
+    
   </div>
 </section>

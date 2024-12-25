@@ -266,13 +266,6 @@ textarea.form-control {
 
 
 
-.comments-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  margin-top: 20px;
-  align-items: start;
-}
 
 .all-comments {
   border-right: 1px solid lightgray;
@@ -283,7 +276,7 @@ textarea.form-control {
   position: sticky;
   top: 10px;
   background-color: white;
-  padding: 15px;
+  padding: 1px;
   border: 1px solid lightgray;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
