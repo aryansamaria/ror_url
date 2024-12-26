@@ -69,5 +69,6 @@ group :test do
   gem 'cuprite', '~> 0.15.1'
   gem 'selenium-webdriver', '>= 4.27.0'
   gem 'webdrivers', '~> 5.0'
+  gem 'rspec-rails', '~> 5.0'
 
 end
