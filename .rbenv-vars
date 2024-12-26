@@ -1,0 +1,3 @@
+SECRET_KEY_BASE=6c5d9e5690778243a034d1c4f7ebddee8b6939bdefc9e4cbacd4e12198de85f96ec1d4e01dea846f3f7b567fb133adc8fb9ac05a4b50810433723f1fe0af6797
+
+DATABASE_URL=postgres://user_123:Micro@0987@localhost/ror_url
