@@ -6,7 +6,11 @@
 server "54.253.106.131", user: "ubuntu", roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
+set :ssh_options, {
+	keys: %w(/Users/Lenevo/Downloads/urlnews.pem),
+	forward_agent: false,
+	auth_methods: %w(publickey password)
+}
 
 
 # role-based syntax
