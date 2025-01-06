@@ -9,3 +9,8 @@ two:
   body: MyText
   user: two
   link: two
+
+comment:
+  body: MyText
+  user: regular_user
+  link: rails

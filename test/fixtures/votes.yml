@@ -11,3 +11,9 @@ two:
   link: two
   upvote: 1
   downvote: 1
+
+vote:
+  user: regular_user
+  link: rails
+  upvote: 1
+  downvote: 1

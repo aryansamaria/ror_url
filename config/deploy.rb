@@ -4,7 +4,11 @@ lock "~> 3.19.2"
 set :application, "ror_url"
 set :repo_url, "git@github.com:aryansamaria/ror_url.git"
 
-
+set :ssh_options, {
+  keys: %w(C:/Users/Lenevo/Downloads/urlnews.pem),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
 # Deploy to the user's home directory
 
 set :deploy_to, "/home/deploy/#{fetch :application}"

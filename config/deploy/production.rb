@@ -34,11 +34,6 @@ set :ssh_options, {
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-set :stage, :production
-
-set :branch, "main"
-
-set :deploy_to, "/var/www/my_app"
 
 
 # Custom SSH Options

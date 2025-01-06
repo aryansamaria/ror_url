@@ -5,3 +5,7 @@ one:
 two:
   username: "another_user"
   password_digest: <%= BCrypt::Password.create("another_password") %>
+
+regular_user:
+  username: "regular_user"
+  password_digest: <%= BCrypt::Password.create('secure123') %>
